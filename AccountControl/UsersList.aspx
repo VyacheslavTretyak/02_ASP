@@ -15,13 +15,15 @@
 			<div class="row">
 				<h1>Users List</h1>
 				<div class="form col-lg-12">
-					<asp:CheckBoxList ID="checkBoxList" runat="server" OnSelectedIndexChanged      ="checkBoxList_SelectedIndexChanged" AutoPostBack="true"></asp:CheckBoxList>
+					<asp:CheckBoxList ID="checkBoxList" runat="server" OnSelectedIndexChanged      ="checkBoxList_SelectedIndexChanged" AutoPostBack="true">	
+						<%--place for listItems--%>
+					</asp:CheckBoxList>
 					<asp:Button ID="btnDelet" runat="server" Text="Delete" OnClick="Delete_Click"/>
 				</div>
 			</div>
 			<div class="row">
 				<div class="footer col-lg-12">
-					<asp:Button ID="btnAddUser" runat="server" Text="Add User" />
+					<asp:Button ID="btnAddUser" runat="server" Text="Add User" OnClick="btnAddUser_Click" />
 					
 				</div>
 			</div>

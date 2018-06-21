@@ -42,3 +42,10 @@ input[type=text], input[type=password] {
 h1{
 	color:#ff6a00;
 }
+.error{
+	color:#ff0000;
+}
+label{	
+	margin-left:20px;
+	font-size: 24px;
+}

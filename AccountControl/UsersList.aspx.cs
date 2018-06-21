@@ -22,7 +22,9 @@ namespace AccountControl
 			{
 				foreach (User user in AccountCreation.users)
 				{
-					checkBoxList.Items.Add(string.Join(user.FirstName, " ", user.LastName));
+					ListItem item = new ListItem($"{user.FirstName} {user.LastName}");					
+					item.Value = user.ID.ToString();
+					checkBoxList.Items.Add(item);
 				}
 			}
 			
@@ -30,15 +32,32 @@ namespace AccountControl
 
 		protected void Delete_Click(object sender, EventArgs e)
 		{
-			btnDelet.ForeColor = Color.Red;
-			Response.Redirect("AccountCreation.aspx");
-
+			List<ListItem> toBeRemove = new List<ListItem>();
+			for (int i = 0; i < checkBoxList.Items.Count; i++)
+			{				
+				if (checkBoxList.Items[i].Selected)
+				{
+					toBeRemove.Add(checkBoxList.Items[i]);
+				}
+			}
+			for (int i = 0; i < toBeRemove.Count; i++)
+			{
+				ListItem item = toBeRemove[i];
+				int id = int.Parse(item.Value);
+				AccountCreation.users.Remove(AccountCreation.users.OfType<User>().First(user => user.ID == id));
+				checkBoxList.Items.Remove(item);
+			}
 		}
 
 		protected void checkBoxList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			btnDelet.Enabled = checkBoxList.Items.OfType<ListItem>().Where(it => it.Selected).Count() == 0 ? false : true;
 
+		}
+
+		protected void btnAddUser_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("AccountCreation.aspx");
 		}
 	}
 }
