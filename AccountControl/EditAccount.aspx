@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AccountCreation.aspx.cs" Inherits="AccountControl.AccountCreation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditAccount.aspx.cs" Inherits="AccountControl.EditAccount" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="row">
 
-				<h1>Create Account</h1>
+				<h1>Edit Account</h1>
 				<div class="form col-lg-12">
 
 					<div>
@@ -45,22 +45,10 @@
 						<asp:RequiredFieldValidator ID="rvEmail" runat="server" ControlToValidate="tbEmail" ErrorMessage="can not by empty" Text="X" ForeColor="red"></asp:RequiredFieldValidator>
 						<asp:RegularExpressionValidator ID="rgvEmail" runat="server" ValidationExpression="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
 							ControlToValidate="tbEmail" ErrorMessage="must be valid email"  Text="X" ForeColor="red"></asp:RegularExpressionValidator>
-					</div>
-					<div>
+					</div>					
 						<div class="fieldName">
-							<asp:Label runat="server" Text="Password"></asp:Label>
+							<asp:HyperLink NavigateUrl="navigateurl" runat="server" Text="Change password"/>	
 						</div>
-						<asp:TextBox ID="tbPassword" type="password" runat="server" />
-						<asp:RequiredFieldValidator ID="rvPassword" runat="server" ControlToValidate="tbPassword" ErrorMessage="can not by empty" Text="X" ForeColor="red"></asp:RequiredFieldValidator>
-					</div>
-					<div>
-						<div class="fieldName">
-							<asp:Label runat="server" Text="Confirm Password"></asp:Label>
-						</div>
-						<asp:TextBox ID="tbConfirmPassword" type="password" runat="server" />
-						<asp:RequiredFieldValidator ID="rvConfirmPassword" runat="server" ControlToValidate="tbConfirmPassword" ErrorMessage="can not by empty" Text="X" ForeColor="red"></asp:RequiredFieldValidator>
-						<asp:CompareValidator ID="cvConfirm" runat="server" ControlToValidate="tbConfirmPassword" ControlToCompare="tbPassword" ErrorMessage="passwords do not match" Text="X" ForeColor="red"></asp:CompareValidator>
-					</div>
 					<div>
 						<div class="fieldName">
 							<asp:Label runat="server" Text="Role"></asp:Label>
@@ -70,14 +58,14 @@
 					<div class="error">
 						<asp:Label ID="lbError" runat="server" Text=""></asp:Label>
 					</div>
-					<asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" ForeColor="Red"/>
+					<asp:ValidationSummary ID="ValidationSummary" runat="server" DisplayMode="BulletList" ForeColor="Red"/>
 
 				</div>
 			</div>
 			<div class="row">
 				<div class="footer col-lg-12">
-					<asp:Button ID="btnAddUser" runat="server" Text="Add User" OnClick="btnAddUser_Click" CssClass="btn"/>		
-					<asp:HyperLink ID="hyperLink" NavigateUrl="~/UsersList.aspx" runat="server" ForeColor="#66ffff">Users List</asp:HyperLink>			
+					<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="btn"/>		
+					<asp:HyperLink ID="hyperLink" NavigateUrl="~/UsersList.aspx" runat="server" ForeColor="#66ffff">Back</asp:HyperLink>			
 				</div>
 			</div>
 		</div>

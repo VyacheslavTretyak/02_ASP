@@ -18,7 +18,7 @@ input[type=text], input[type=password] {
 	margin: 10px 0;
 	width: 250px;		
 }
-#btnAddUser {
+.btn {
 	margin: 50px;
 	border: 2px solid #196f00;
 	border-radius: 25px;
@@ -26,7 +26,7 @@ input[type=text], input[type=password] {
 	width: 250px;
 }
 
-	#btnAddUser:hover {		
+	.btn:hover {
 		background: #00ff42;
 	}
 

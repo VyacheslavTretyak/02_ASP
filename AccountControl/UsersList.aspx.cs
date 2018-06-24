@@ -10,6 +10,8 @@ namespace AccountControl
 {
 	public partial class UsersList : System.Web.UI.Page
 	{
+		RoleRepository roleRepository = RoleRepository.Instance;
+		AccountRepository accountRepository = AccountRepository.Instance;
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			LoadList();
@@ -20,9 +22,9 @@ namespace AccountControl
 		{
 			if (!IsPostBack)
 			{
-				foreach (User user in AccountCreation.users)
+				foreach (User user in accountRepository.GetAll())
 				{
-					ListItem item = new ListItem($"{user.FirstName} {user.LastName}");					
+					ListItem item = new ListItem($"{user.FirstName} {user.LastName} <a href='EditAccount.aspx?id={user.ID}'>EDIT</a>?");					
 					item.Value = user.ID.ToString();
 					checkBoxList.Items.Add(item);
 				}
@@ -43,8 +45,7 @@ namespace AccountControl
 			for (int i = 0; i < toBeRemove.Count; i++)
 			{
 				ListItem item = toBeRemove[i];
-				int id = int.Parse(item.Value);
-				AccountCreation.users.Remove(AccountCreation.users.OfType<User>().First(user => user.ID == id));
+				accountRepository.Delete(int.Parse(item.Value));			
 				checkBoxList.Items.Remove(item);
 			}
 		}

@@ -75,12 +75,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EditAccount.aspx" />
     <Content Include="AccountCreation.aspx" />
     <Content Include="style.css" />
     <Content Include="UsersList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RoleRepository.cs" />
+    <Compile Include="AccountRepository.cs" />
+    <Compile Include="EditAccount.aspx.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditAccount.aspx.designer.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AccountCreation.aspx.cs">
       <DependentUpon>AccountCreation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +98,7 @@
     <Compile Include="AccountCreation.aspx.designer.cs">
       <DependentUpon>AccountCreation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />

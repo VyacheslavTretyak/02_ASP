@@ -10,86 +10,81 @@ using System.Web.UI.WebControls;
 namespace AccountControl
 {
 	public partial class AccountCreation : System.Web.UI.Page
-	{
-		public static List<Role> roles = null;
-		public static List<User> users = null;
-		public static int id = 1;
+	{		
+		RoleRepository roleRepository = RoleRepository.Instance;
+		AccountRepository accountRepository = AccountRepository.Instance;
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			LoadRoles();
 			LoadUsers();			
 		}
+		private void LoadRoles()
+		{
+			if (!roleRepository.IsInit)
+			{				
+				roleRepository.Create(new Role("Guest"));
+				roleRepository.Create(new Role("Admin"));
+				roleRepository.Create(new Role("Programmer"));
+				roleRepository.IsInit = true;
+			}
+			foreach (Role role in roleRepository.GetAll())
+			{
+				cbRole.Items.Add(role.Name);
+			}
+		}
+			
+
 
 		private void LoadUsers()
 		{
-			if (users == null)
+			if(accountRepository.IsInit)
 			{
-				users = new List<User>()
-				{
-					new User()
-					{
-						ID=id++,
-						FirstName="Vyacheslav",
-						LastName="Tretyak",
-						Address="Kryvyi Rih",
-						Email="tretyak1c@gmail.com",
-						Password = "111",
-						Role = roles[2],
-					},
-					new User()
-					{
-						ID=id++,
-						FirstName="Chack",
-						LastName="Norris",
-						Address="Los Angeles",
-						Email="bestofthebest@gmail.com",
-						Password = "222",
-						Role = roles[1],
-					},
-					new User()
-					{
-						ID=id++,
-						FirstName="Kostya",
-						LastName="Nonamed",
-						Address="Kryvyi Rih",
-						Email="kostya@gmail.com",
-						Password = "333",
-						Role = roles[0],
-					},
-				};
-			}
+				return;				
+			}			
+			accountRepository.Create(new User()
+			{
+				FirstName = "Vyacheslav",
+				LastName = "Tretyak",
+				Address = "Kryvyi Rih",
+				Email = "tretyak1c@gmail.com",
+				Password = "111",
+				Role = roleRepository.Get("Programmer")
+			});
+			accountRepository.Create(new User()
+			{
+				FirstName = "Chack",
+				LastName = "Norris",
+				Address = "Los Angeles",
+				Email = "bestofthebest@gmail.com",
+				Password = "222",
+				Role = roleRepository.Get("Admin")
+			});
+			accountRepository.Create(new User()
+			{
+				FirstName = "Kostya",
+				LastName = "Nonamed",
+				Address = "Kryvyi Rih",
+				Email = "kostya@gmail.com",
+				Password = "333",
+				Role = roleRepository.Get("Guest")
+			});
+			accountRepository.IsInit = true;
 		}
 
-		private void LoadRoles()
-		{
-			if (roles == null)
-			{
-				roles = new List<Role>()
-				{
-					new Role("Guest"),
-					new Role("Admin"),
-					new Role("Programmer"),
-				};
-			}
-			foreach (var role in roles)
-			{
-				cbRole.Items.Add(role.ToString());
-			}
-		}
+		
 
 		protected void btnAddUser_Click(object sender, EventArgs e)
 		{			
 			if (IsValid)
 			{
-				users.Add(new User()
+				accountRepository.Create(new User()
 				{
-					ID = id++,
 					FirstName = tbFirstName.Text,
 					LastName = tbLastName.Text,
 					Address = tbAddress.Text,
 					Email = tbEmail.Text,
 					Password = string.Join(string.Empty, MD5.Create().ComputeHash(Encoding.Unicode.GetBytes(tbPassword.Text)).Select(@byte => @byte.ToString("X2"))),
-					Role = roles.OfType<Role>().First(role => role.Name == cbRole.SelectedItem.Text)
+					Role = roleRepository.GetAll().OfType<Role>().First(role => role.Name == cbRole.SelectedItem.Text)
 				});
 				Response.Redirect("~/AccountCreation.aspx", false);
 			}

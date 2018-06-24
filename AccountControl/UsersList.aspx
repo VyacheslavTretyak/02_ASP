@@ -23,7 +23,7 @@
 			</div>
 			<div class="row">
 				<div class="footer col-lg-12">
-					<asp:Button ID="btnAddUser" runat="server" Text="Add User" OnClick="btnAddUser_Click" />
+					<asp:Button ID="btnAddUser" runat="server" Text="Add User" OnClick="btnAddUser_Click" CssClass="btn"/>
 					
 				</div>
 			</div>
