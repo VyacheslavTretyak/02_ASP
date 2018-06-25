@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -21,26 +19,29 @@ namespace AccountControl
 		}
 
 		private void LoadData()
-		{			 
+		{
 			try
 			{
 				int id = int.Parse(Request["id"]);
 				user = accountRepository.Get(id);
-				tbFirstName.Text = user.FirstName;
-				tbLastName.Text = user.LastName;
-				tbAddress.Text = user.Address;
-				tbEmail.Text = user.Email;
-				cbRole.SelectedValue = user.Role.Name;
+				if (!IsPostBack)
+				{	
+					tbFirstName.Text = user.FirstName;
+					tbLastName.Text = user.LastName;
+					tbAddress.Text = user.Address;
+					tbEmail.Text = user.Email;
+					cbRole.SelectedValue = user.Role.Name;
+				}
 			}
 			catch (Exception)
 			{
 				lbError.Text = "Error parametr format.";
-			}			
-			
+			}
+
 		}
 
 		private void LoadRoles()
-		{			
+		{
 			foreach (Role role in roleRepository.GetAll())
 			{
 				cbRole.Items.Add(role.Name);
@@ -51,16 +52,16 @@ namespace AccountControl
 		{
 			if (IsValid)
 			{
-				user.FirstName = tbFirstName.Text;
+				user.FirstName = tbFirstName.Text;				
 				user.LastName = tbLastName.Text;
 				user.Address = tbAddress.Text;
 				user.Email = tbEmail.Text;
-				user.Role = roleRepository.Get(cbRole.SelectedValue);			
+				user.Role = roleRepository.Get(cbRole.SelectedValue);
 				Response.Redirect("~/UsersList.aspx", false);
 			}
 			else
 			{
-				lbError.Text = "Error!Check inputs values.";
+				lbError.Text = "Error! Check inputs values.";
 			}
 		}
 	}

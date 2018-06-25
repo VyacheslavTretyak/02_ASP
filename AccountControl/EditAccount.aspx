@@ -4,23 +4,21 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-	<title>AccountControl</title>	
+    <title>Account Control</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
 	<link href="style.css" rel="stylesheet" />
 </head>
 <body>
-	<form id="form" runat="server">
-		<div class="container">
+    <form id="form1" runat="server">
+      <div class="container">
 			<div class="row">
-
 				<h1>Edit Account</h1>
 				<div class="form col-lg-12">
-
 					<div>
 						<div class="fieldName">
 							<asp:Label runat="server" Text="First Name"></asp:Label>
 						</div>
-						<asp:TextBox ID="tbFirstName" runat="server" />
+						<asp:TextBox ID="tbFirstName" runat="server" />					
 						<asp:RequiredFieldValidator ID="rvFirstname" runat="server" ControlToValidate="tbFirstName" ErrorMessage="can not by empty"  Text="X" ForeColor="red"></asp:RequiredFieldValidator>
 					</div>
 					<div>
@@ -69,6 +67,6 @@
 				</div>
 			</div>
 		</div>
-	</form>
+    </form>
 </body>
 </html>
