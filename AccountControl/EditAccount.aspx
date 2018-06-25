@@ -45,7 +45,7 @@
 							ControlToValidate="tbEmail" ErrorMessage="must be valid email"  Text="X" ForeColor="red"></asp:RegularExpressionValidator>
 					</div>					
 						<div class="fieldName">
-							<asp:HyperLink NavigateUrl="navigateurl" runat="server" Text="Change password"/>	
+							<asp:HyperLink NavigateUrl="~/PasswordChange.aspx" runat="server" Text="Change password"/>	
 						</div>
 					<div>
 						<div class="fieldName">
@@ -63,7 +63,7 @@
 			<div class="row">
 				<div class="footer col-lg-12">
 					<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="btn"/>		
-					<asp:HyperLink ID="hyperLink" NavigateUrl="~/UsersList.aspx" runat="server" ForeColor="#66ffff">Back</asp:HyperLink>			
+					<asp:HyperLink ID="hyperLink" NavigateUrl="~/EditAccount.aspx" runat="server" ForeColor="#66ffff">Back</asp:HyperLink>			
 				</div>
 			</div>
 		</div>

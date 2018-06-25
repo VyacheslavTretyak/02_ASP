@@ -47,7 +47,7 @@ namespace AccountControl
 				LastName = "Tretyak",
 				Address = "Kryvyi Rih",
 				Email = "tretyak1c@gmail.com",
-				Password = "111",
+				Password = "6ECE4FD51BC113942692637D9D4B860E",
 				Role = roleRepository.Get("Programmer")
 			});
 			accountRepository.Create(new User()
@@ -56,7 +56,7 @@ namespace AccountControl
 				LastName = "Norris",
 				Address = "Los Angeles",
 				Email = "bestofthebest@gmail.com",
-				Password = "222",
+				Password = "0970FFE8F1B935F2E126C6D98B492F91",
 				Role = roleRepository.Get("Admin")
 			});
 			accountRepository.Create(new User()
@@ -65,7 +65,7 @@ namespace AccountControl
 				LastName = "Nonamed",
 				Address = "Kryvyi Rih",
 				Email = "kostya@gmail.com",
-				Password = "333",
+				Password = "5608E1BF11D627C3CF09842375D41677",
 				Role = roleRepository.Get("Guest")
 			});
 			accountRepository.IsInit = true;

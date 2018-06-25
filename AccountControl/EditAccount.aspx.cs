@@ -9,11 +9,12 @@ namespace AccountControl
 {
 	public partial class EditAccount : System.Web.UI.Page
 	{
+		public static int id = 0;
 		RoleRepository roleRepository = RoleRepository.Instance;
 		AccountRepository accountRepository = AccountRepository.Instance;
 		private User user;
 		protected void Page_Load(object sender, EventArgs e)
-		{
+		{			
 			LoadRoles();
 			LoadData();
 		}
@@ -22,7 +23,7 @@ namespace AccountControl
 		{
 			try
 			{
-				int id = int.Parse(Request["id"]);
+				id = int.Parse(Request["id"]);				
 				user = accountRepository.Get(id);
 				if (!IsPostBack)
 				{	

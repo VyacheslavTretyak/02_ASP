@@ -59,7 +59,7 @@
 						</div>
 						<asp:TextBox ID="tbConfirmPassword" type="password" runat="server" />
 						<asp:RequiredFieldValidator ID="rvConfirmPassword" runat="server" ControlToValidate="tbConfirmPassword" ErrorMessage="can not by empty" Text="X" ForeColor="red"></asp:RequiredFieldValidator>
-						<asp:CompareValidator ID="cvConfirm" runat="server" ControlToValidate="tbConfirmPassword" ControlToCompare="tbPassword" ErrorMessage="passwords do not match" Text="X" ForeColor="red"></asp:CompareValidator>
+						<asp:CompareValidator ID="cvConfirm" runat="server"  ControlToValidate="tbConfirmPassword" ControlToCompare="tbPassword" ErrorMessage="passwords do not match" Text="X" ForeColor="red"></asp:CompareValidator>
 					</div>
 					<div>
 						<div class="fieldName">
